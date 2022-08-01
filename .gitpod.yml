@@ -1,5 +1,5 @@
 tasks:
-    init: |  
+   - init: |  
       composer install
       docker-compose up -d
       docker-compose exec php-fpm bash .docker/install-skeleton-db.sh
