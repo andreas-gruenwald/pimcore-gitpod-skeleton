@@ -1,2 +1,6 @@
-image:
-  file: .gitpod.dockerfile
+tasks:
+  - init: composer install
+    command: docker-compose up -d
+ports:
+  - port: 80
+    onOpen: open-preview
