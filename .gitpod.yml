@@ -1,10 +1,11 @@
 tasks:
   - init: |  
       composer install
+      sed -i "s/#user: '1000:1000'/user: $(id -u):$(id -g)/g" docker-compose.yaml
       docker-compose up -d
       sleep 10
       docker-compose exec php-fpm bash .docker/install-skeleton-db.sh
-      docker-compose exec php-fpm chown -R $(id -u):$(id -g) .
+      docker-compose exec --user=root php-fpm chown -R $(id -u):$(id -g) .
     command: docker-compose up -d
 ports:
   - port: 80
